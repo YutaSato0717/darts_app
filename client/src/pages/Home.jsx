@@ -29,6 +29,10 @@ function Home() {
       navigate('/countup');
     };
 
+    const Logout = () => {
+      navigate('/');
+    };
+
     return (
       <AppShell
         styles={{
@@ -63,6 +67,14 @@ function Home() {
                  <Center>
                       <Button mt="md" type="submitcountup" variant="subtle" color="dark">
                         COUNT UP
+                      </Button>
+                  </Center>
+              </form>
+
+              <form onSubmit={Logout}>
+                 <Center>
+                      <Button mt="md" type="Logout" variant="subtle" color="dark">
+                        LOG OUT
                       </Button>
                   </Center>
               </form>
