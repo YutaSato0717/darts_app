@@ -3,17 +3,17 @@ import { Container } from '@mantine/core';
 import { Button } from '@mantine/core';
 import { Box, Center } from '@mantine/core';
 import {AppShell,Navbar,Header,MediaQuery,Burger,
-  useMantineTheme,Avatar} from '@mantine/core';
-import { useNavigate, Link} from "react-router-dom";
-import { IconStar } from '@tabler/icons';
+  useMantineTheme} from '@mantine/core';
+import { useNavigate} from "react-router-dom";
 import { useState } from 'react';
-import { Card, Text, Badge, Group } from '@mantine/core';
+import { Card} from '@mantine/core';
+import Graph1 from './Graph1';
+import Graph2 from './Graph2';
+import Graph3 from './Graph3';
+
 function Home() {
   const navigate = useNavigate();
 
-  const submit = ()=>{
-    navigate("/home")
-    }
     const theme = useMantineTheme();
     const [opened, setOpened] = useState(false);
   
@@ -103,6 +103,7 @@ function Home() {
           </Header>
         }
       >
+      
       <Box sx={{ maxWidth: 1000 }} mx="auto">
         <Center><Title order={2}>プレイヤーデータ</Title></Center>
         <br></br>
@@ -116,12 +117,10 @@ function Home() {
   
           <p>　　　　Average Stats :65.4</p>
           <p>　　　　Win Rate :56.2%</p>
-      
-    
-  <p></p>
-  <Center><Container>
-         ここにグラフを表示
-        </Container></Center>
+         
+          <Graph1 />{/* Graph1 コンポーネントを表示 */}
+          <p></p>
+  
         <br></br>
         </Card.Section>
         </Card>
@@ -136,14 +135,12 @@ function Home() {
         CRICKET
         </h3>
         </Container>
-          <p>　　　　Average Stats :65.4</p>
-          <p>　　　　Win Rate :56.2%</p>
+          <p>　　　　Average Stats :2.28</p>
+          <p>　　　　Win Rate :64.6%</p>
   
-       
+          <Graph2 />{/* Graph2 コンポーネントを表示 */} 
   <p></p>
-  <Center><Container>
-         ここにグラフを表示
-        </Container></Center>
+  
         <br></br>
         </Card.Section>
         </Card>
@@ -156,13 +153,12 @@ function Home() {
         COUNT UP
         </h3>
           </Container>
-
+          <p>　　　　Average Score :586</p>
           <p>　　　　Best Score :734</p>
-     
+
+          <Graph2 />{/* Graph2 コンポーネントを表示 */} 
   <p></p>
-  <Center><Container>
-          ここにグラフを表示
-        </Container></Center>
+  
         <br></br>
         </Card.Section>
         </Card>
