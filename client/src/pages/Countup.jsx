@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Title, Container, Button, Box, Center, AppShell, Navbar, Header, MediaQuery, Burger, useMantineTheme, Card, TextInput,  } from '@mantine/core'; // Radio を追加
+import { Title, Container, Button, Box, Center, AppShell, Navbar, Header, MediaQuery, Burger, useMantineTheme, Card, TextInput, } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 
 function Countup() {
@@ -11,14 +11,20 @@ function Countup() {
   };
 
   const handleSubmit = () => {
-    // フォームが送信されたときの処理を実装する
+    // 正規表現を使用して数字が入力されたかどうかを検証
+    const isNumeric = /^[0-9.]+$/.test(stats);
+
+    if (isNumeric) {
+      // 数字が入力された場合にフォームが送信される
+      navigate('/record_succeed');
+    } else {
+      // 数字以外が入力された場合のエラーハンドリング
+      alert('scoreに数字のみを入力してください');
+    }
   };
 
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  const submit = () => {
-    navigate('/home');
-  };
 
   const home = () => {
     navigate('/home');
@@ -65,7 +71,7 @@ function Countup() {
 
           <form onSubmit={submitcricket}>
             <Center>
-              <Button mt="md" type="submitcriket" variant="subtle" color="dark">
+              <Button mt="md" type="submitcricket" variant="subtle" color="dark">
                 CRICKET
               </Button>
             </Center>
@@ -108,10 +114,10 @@ function Countup() {
             <Container>
               <h3>COUNT UP</h3>
             </Container>
-        
+
             <TextInput
               label="Score"
-              placeholder="Enter your stats"
+              placeholder="Enter your score"
               value={stats}
               onChange={handleNameChange}
             />
@@ -119,17 +125,14 @@ function Countup() {
             <p></p>
             <Center>
               <Container>
-                <Button mt="md" onClick={submit}>
+                <Button mt="md" onClick={handleSubmit}>
                   Submit
                 </Button>
               </Container>
-             
             </Center>
             <br></br>
           </Card.Section>
         </Card>
-
-        
       </Box>
     </AppShell>
   );

@@ -26,7 +26,7 @@ function Top() {
      
       <Center><Button component={Link} to="/login">Login</Button></Center>
       <Center><Text mt="md"></Text></Center>
-      <Center><Button component={Link} to="/profile-setting">SignUp</Button></Center>
+      <Center><Button component={Link} to="/signup">SignUp</Button></Center>
     </Box>
   )
 }
