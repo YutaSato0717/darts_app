@@ -110,7 +110,7 @@ function Countup() {
             </Container>
         
             <TextInput
-              label="Stats"
+              label="Score"
               placeholder="Enter your stats"
               value={stats}
               onChange={handleNameChange}
