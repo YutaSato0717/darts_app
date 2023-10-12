@@ -6,11 +6,11 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
 import Top from './pages/Top'
-import Recruit_succeed from './pages/Recruit_succeed'
+import Record_succeed from './pages/Record_succeed'
 import Zeroone from './pages/Zeroone'
 import Cricket from './pages/Cricket'
 import Countup from './pages/Countup'
-import ProfileSetting from './pages/ProfileSetting'
+import Signup from './pages/Signup'
 const router = createBrowserRouter([
   
   {
@@ -28,12 +28,12 @@ const router = createBrowserRouter([
   },
   
   {
-    path: "/recruit_succeed",
-    element: <Recruit_succeed />
+    path: "/record_succeed",
+    element: <Record_succeed />
   },
   {
-    path: "/profile-setting",
-    element: <ProfileSetting/>
+    path: "/signup",
+    element: <Signup/>
   },
 
 {

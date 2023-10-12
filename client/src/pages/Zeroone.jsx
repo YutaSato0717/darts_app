@@ -1,20 +1,35 @@
 import React, { useState } from 'react';
-import { Title, Container, Button, Box, Center, AppShell, Navbar, Header, MediaQuery, Burger, useMantineTheme, Card, TextInput, Radio } from '@mantine/core'; // Radio を追加
+import { Title, Container, Button, Box, Center, AppShell, Navbar, Header, MediaQuery, Burger, useMantineTheme, Card, TextInput, Radio } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 
 function Zeroone() {
   const navigate = useNavigate();
-  const [stats, setName] = useState(''); // フォームの値を管理するステート
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-
+  const [stats, setStats] = useState('');
+  const [selectedOption, setSelectedOption] = useState(null); 
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  const submit = () => {
-    navigate("/home")
-  };
+
+ 
+  const handleNameChange = (e) => {
+    setStats(e.target.value);
+};
+
+
+
+const handleSubmit = () => {
+  const isNumeric = /^[\d.]+$/.test(stats);
+  if (isNumeric && selectedOption) {
+        // 必要な条件を満たしている場合の処理をここに書く
+        navigate("/record_succeed");
+      } else if (!isNumeric) {
+        // 数字と小数点以外の文字が含まれている場合のエラーハンドリング
+        alert("スタッツに数字と小数点のみを入力してください");
+      } else if (!selectedOption) {
+        // 選択されたオプションがない場合のエラーハンドリング
+        alert("WIn or LOSEを選択してください");
+      }
+};
+
   const home = () => {
     navigate('/home');
   };
@@ -108,6 +123,8 @@ function Zeroone() {
               label="WIn or LOSE"
               offset="md"
               withAsterisk
+              // ラジオボタンの値が変更されたときに選択したオプションを更新
+              onChange={(value) => setSelectedOption(value)}
             >
               <Radio value="win" label="WIN" />
               <Radio value="lose" label="LOSE" />
@@ -123,7 +140,7 @@ function Zeroone() {
             <p></p>
             <Center>
               <Container>
-                <Button mt="md" onClick={submit}>
+                <Button mt="md" onClick={handleSubmit}>
                   Submit
                 </Button>
               </Container>
