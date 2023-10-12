@@ -10,6 +10,7 @@ import Recruit_succeed from './pages/Recruit_succeed'
 import Zeroone from './pages/Zeroone'
 import Cricket from './pages/Cricket'
 import Countup from './pages/Countup'
+import ProfileSetting from './pages/ProfileSetting'
 const router = createBrowserRouter([
   
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/recruit_succeed",
     element: <Recruit_succeed />
+  },
+  {
+    path: "/profile-setting",
+    element: <ProfileSetting/>
   },
 
 {
