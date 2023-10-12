@@ -12,7 +12,7 @@ export default function Graph1() {
       datasets: [
         {
           label: 'Stats',
-          data: [59.4,53.0,75.5,59.4,53.0,75.5,59.4,53.0,75.5,98.5],
+          data: [58.4,53.0,75.5,59.4,53.0,75.5,59.4,53.0,75.5,98.5],
           backgroundColor: 'rgba(75, 192, 192, 0.2)',
           borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1,
