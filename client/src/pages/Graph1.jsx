@@ -5,6 +5,7 @@ export default function Graph1() {
   const chartRef = useRef(null);
   let myChart = null;
 
+  
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');
     const data = {
