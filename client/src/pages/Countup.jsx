@@ -112,7 +112,10 @@ function Countup() {
         <Card shadow="sm" p="lg" radius="md" withBorder>
           <Card.Section>
             <Container>
-              <h3>COUNT UP</h3>
+              <center>
+            <h3>COUNT UP</h3>
+            </center>
+              
             </Container>
 
             <TextInput
@@ -132,6 +135,22 @@ function Countup() {
             </Center>
             <br></br>
           </Card.Section>
+        </Card>
+<br />
+        <Card shadow="sm" p="lg" radius="md" withBorder>
+        <Card.Section>
+        <Container>
+          <center>
+              <h3>ランキング</h3>
+              <p>順位　　　　name　　　ベストスコア</p>
+              <p>1位　　　　ゆーが　　　745</p>
+              <p>2位　　　　ゆーが　　　734</p>
+              <p>3位　　　　ゆーが　　　702</p>
+              <p>4位　　　　ゆーが　　　688</p>
+              <p>5位　　　　ゆーが　　　662</p>
+              </center>
+            </Container>
+        </Card.Section>
         </Card>
       </Box>
     </AppShell>

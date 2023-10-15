@@ -115,7 +115,10 @@ const handleSubmit = () => {
         <Card shadow="sm" p="lg" radius="md" withBorder>
           <Card.Section>
             <Container>
-              <h3>CRICKET</h3>
+              <center> 
+                <h3>CRICKET</h3>
+              </center>
+             
             </Container>
             <Radio.Group
               name="favoriteFramework"
@@ -150,6 +153,22 @@ const handleSubmit = () => {
           </Card.Section>
         </Card>
 
+        <br></br>
+        <Card shadow="sm" p="lg" radius="md" withBorder>
+        <Card.Section>
+        <Container>
+          <center>
+              <h3>ランキング</h3>
+              <p>順位　　　　name　　　平均スタッツ</p>
+              <p>1位　　　　ゆーが　　　3.44</p>
+              <p>2位　　　　ゆーが　　　3.13</p>
+              <p>3位　　　　ゆーが　　　2.84</p>
+              <p>4位　　　　ゆーが　　　2.79</p>
+              <p>5位　　　　ゆーが　　　2.38</p>
+              </center>
+            </Container>
+        </Card.Section>
+        </Card>
         
       </Box>
     </AppShell>

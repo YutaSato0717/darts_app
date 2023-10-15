@@ -110,13 +110,18 @@ function Home() {
         <Card shadow="sm" p="lg" radius="md" withBorder>
         <Card.Section>
           <Container>
-          <h3>
-        01 GAME
-        </h3>
+            <center>
+            <h3>
+            01 GAME
+            </h3>
+            </center>
+        
           </Container>
-  
-          <p>　　　　Average Stats :65.4</p>
-          <p>　　　　Win Rate :56.2%</p>
+          <center>
+          <p>Average Stats :65.4</p>
+          <p>Win Rate :56.2%</p>
+          </center>
+         
          
           <Graph1 />{/* Graph1 コンポーネントを表示 */}
           <p></p>
@@ -131,13 +136,17 @@ function Home() {
         <Card.Section>
           
           <Container>
-        <h3>
-        CRICKET
-        </h3>
+
+           <center>
+            <h3>
+            CRICKET
+           </h3>
+           </center>
         </Container>
-          <p>　　　　Average Stats :2.28</p>
-          <p>　　　　Win Rate :64.6%</p>
-  
+        <center>
+          <p>Average Stats :2.28</p>
+          <p>Win Rate :64.6%</p>
+        </center>
           <Graph2 />{/* Graph2 コンポーネントを表示 */} 
   <p></p>
   
@@ -149,14 +158,17 @@ function Home() {
         <Card shadow="sm" p="lg" radius="md" withBorder>
         <Card.Section>
           <Container>
+            <center>
           <h3>
         COUNT UP
         </h3>
+        </center>
           </Container>
-          <p>　　　　Average Score :586</p>
-          <p>　　　　Best Score :734</p>
-
-          <Graph2 />{/* Graph2 コンポーネントを表示 */} 
+          <center>
+          <p>Average Score :586</p>
+          <p>Best Score :734</p>
+          </center>
+          <Graph3 />{/* Graph2 コンポーネントを表示 */} 
   <p></p>
   
         <br></br>
