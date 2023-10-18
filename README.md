@@ -1,5 +1,9 @@
 ## アプリ概要
-### アプリ名「Aizu Darts」
+
+## アプリ名「Aizu Darts」
+<img width="250" alt="AizuDartsimage" src="https://github.com/YutaSato0717/House-Hunting/assets/109122250/38390b5f-3513-4aa8-bb76-50ccd6c30c18">
+
+## コンセプト
 所属しているダーツサークルで、部員のダーツ試合データを記録することを目的としたアプリ。
 プレイヤーが記録していくことでサークル内ランキングやプレイヤーごとのレーティングが算出される。
 
