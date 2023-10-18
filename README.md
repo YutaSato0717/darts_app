@@ -28,3 +28,46 @@
 
 - MySQL開始: mysql -u root -p
 - アプリ実行：yarn dev
+
+## データベーステーブル一覧
+
+|  | リクエスト |  |  | レスポンス |  |
+| --- | --- | --- | --- | --- | --- |
+| 処理の内容 | 変数名 | 型 | 必須 | 変数 | 型 |
+| ユーザー情報 | Id(pk) | int | ○ | Id(pk) |  |
+| users | name | string | ○ | name | string |
+|  | password | string | ○ |  |  |
+|  | grade | int |  | grade | int |
+|  | email | string | ○ |  | string |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+| 01の中間テーブル | Id(pk) |  | ○ | Id(pk) |  |
+| results_01 | win | int | ○ | win | int |
+|  | lose | int | ○ | lose | int |
+|  | stats_Id | int | ○ | stats | int |
+|  | user_Id | int |  | user_Id | int |
+|  |  |  |  |  |  |
+| 01のスタッツ |  |  |  |  |  |
+| stats_01 | Id(pk) | int | ○ | Id(pk) | int |
+|  | stats | double | ○ | stats | double |
+|  |  |  |  |  |  |
+| クリケットの中間テーブル | Id(pk) | int | ○ | Id(pk) | int |
+| results_cricket | win | int | ○ | win | int |
+|  | lose | int | ○ | lose | int |
+|  | stats_Id | int | ○ | stats_Id | int |
+|  | user_Id | int |  | user_Id | string |
+|  |  |  |  |  |  |
+| クリケのスタッツ |  |  |  |  |  |
+| stats_cricket | Id(pk) | int | ○ | Id(pk) | int |
+|  | stats | double | ○ | stats | double |
+|  |  |  |  |  |  |
+| カウントアップの結果 |  |  |  |  |  |
+| results_count_up | max_score | int |  | max_score | int |
+|  | user_Id | int |  | user_Id | string |
+|  | score_Id | int | ○ | score_Id | int |
+|  |  |  |  |  |  |
+| カウントアップのスコア |  |  |  |  |  |
+| score_count_up | Id(pk) | int | ○ | Id(pk) | int |
+|  | score | double | ○ | score | double |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
