@@ -1,16 +1,18 @@
-//requireでexpressモジュールを読み込む
 const express = require('express');
-//expressモジュールを実体化して、定数appに代入
 const app = express();
-//ポート番号を指定
-const port = 3000;
+const path = require('path');
+const port = process.env.PORT || 3001;
 
-//'/'パスにGET要求があった際に実行する処理
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
-//3000ポートでlisten
+app.get('/api', (req, res) => {
+    res.json({ message: 'Hello World!' });
+  });
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+  });  
+
 app.listen(port, () => {
   console.log(`listening on *:${port}`);
-})
+});
