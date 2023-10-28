@@ -1,4 +1,4 @@
-## アプリ概要（開発継続中）
+## アプリ概要（開発中）
 
 ## アプリ名「Aizu Darts」
 <img width="250" alt="AizuDartsimage" src="https://github.com/YutaSato0717/House-Hunting/assets/109122250/38390b5f-3513-4aa8-bb76-50ccd6c30c18">
