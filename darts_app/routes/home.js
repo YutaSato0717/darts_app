@@ -2,23 +2,43 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   const userId = req.session.userid;
   const isAuth = Boolean(userId);
-
   knex("games")
     .select("*")
+    .where({user_id: userId})
     .then(function (results) {
+      console.log(results)
       res.render('home', {
         title: 'Darts App',
-        todos: results,
+        games: results,
+        isAuth: isAuth,
       });
     })
     .catch(function (err) {
       console.error(err);
       res.render('home', {
         title: 'Darts App',
+        isAuth: isAuth,
+      });
+    });
+});
+
+router.post('/', function (req, res, next) {
+  const userId = req.session.userid;
+  const isAuth = Boolean(userId);
+  const game = req.body.add;
+  knex("games")
+    .insert({user_id: 1, content: game})
+    .then(function () {
+      res.redirect('/')
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.render('home', {
+        title: 'Darts App',
+        isAuth: isAuth,
       });
     });
 });
