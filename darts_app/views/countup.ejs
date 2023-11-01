@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<% if(isAuth) { %>
+  <p>count up</p>
+<% } else { %>
+  <h1>Welcome to the Darts_App</h1>
+  <a href="/signup">Sign up now!</a>
+<% } %>
+</body>
+</html>

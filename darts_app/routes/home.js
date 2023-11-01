@@ -46,5 +46,8 @@ router.post('/', function (req, res, next) {
 router.use('/signup', require('./signup'));
 router.use('/signin', require('./signin'));
 router.use('/logout', require('./logout'));
+router.use('/zeroone', require('./01'));
+router.use('/countup', require('./countup'));
+router.use('/cricket', require('./cricket'));
 
 module.exports = router;
