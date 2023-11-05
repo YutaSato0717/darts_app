@@ -7,25 +7,32 @@ router.get('/', async function (req, res, next) {
   const isAuth = Boolean(userId);
 
   if (isAuth) {
-    // ログインしているユーザーのgamesテーブルから最大10件のデータを取得
-    const userGameData = await knex('games')
-      .select('stats_or_score')
-      .where({ type: 'cricket', user_id: userId })
-      .orderBy('id', 'desc')
-      .limit(10);
+    try {
+      // ログインしているユーザーのgamesテーブルから最大10件のデータを取得
+      const userGameData = await knex('games')
+        .select('stats_or_score', 'win')
+        .where({ type: 'cricket', user_id: userId })
+        .orderBy('id', 'desc')
+        .limit(10);
 
-    // 全ユーザーのgamesテーブルからstats_or_scoreの平均の上位5人のデータを取得
-    const top5Players = await knex('games')
-      .select('user_id', knex.raw('AVG(stats_or_score) as average'))
-      .where({ type: 'cricket' })
-      .groupBy('user_id')
-      .orderBy('average', 'desc')
-      .limit(5);
+      // 全ユーザーのgamesテーブルからstats_or_scoreの平均の上位5人のデータを取得
+      const top5Players = await knex('games')
+        .select('user_id', knex.raw('AVG(stats_or_score) as average'))
+        .where({ type: 'cricket' })
+        .groupBy('user_id')
+        .orderBy('average', 'desc')
+        .limit(5);
 
-    res.status(200).json({
-      userGameData,
-      top5Players,
-    });
+      // データをejsテンプレートに渡してrender
+      res.render('cricket', {
+        title: 'Cricket',
+        isAuth: isAuth,
+        userCricketGames: userGameData,
+        topCricketPlayers: top5Players,
+      });
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   } else {
     res.status(401).json({ error: 'Unauthorized' });
   }
@@ -51,9 +58,12 @@ router.post('/', async function (req, res, next) {
       return;
     }
 
-    await knex('games')
-      .insert(gameData);
-    res.status(200).json({ message: 'Data added successfully.' });
+    try {
+      await knex('games').insert(gameData);
+      res.status(200).json({ message: 'Data added successfully.' });
+    } catch (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   } else {
     res.status(401).json({ error: 'Unauthorized' });
   }
