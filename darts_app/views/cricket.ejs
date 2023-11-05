@@ -5,18 +5,52 @@
   <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
-<% if(isAuth) { %>
-  <p>cricket</p>
-  <a href="/">home!</a>
-  <br>
-  <a href="/countup">countup!</a>
-  <br>
-  <a href="/zeroone">zeroone!</a>
-  <br>
-  <a href="/logout">logout!</a>
-<% } else { %>
-  <h1>Welcome to the Darts_App</h1>
-  <a href="/signup">Sign up now!</a>
-<% } %>
+  <h1>Cricket</h1>
+
+  <% if(isAuth) { %>
+    <a href="/">home!</a>
+    <br>
+    <a href="/countup">countup!</a>
+    <br>
+    <a href="/zeroone">zeroone!</a>
+    <br>
+    <a href="/logout">logout!</a>
+    <br>
+
+    <form action="/cricket" method="POST">
+      <label for="stats_or_score">Stats or Score:</label>
+      <input type="number" name="stats_or_score" required>
+      <br>
+      <label for="win">Win (1 for win, 0 for loss):</label>
+      <input type="number" name="win" required>
+      <br>
+      <button type="submit">Add Data</button>
+    </form>
+
+    <h2>Your Last 10 Cricket Games</h2>
+    <ul>
+      <% if (userCricketGames && userCricketGames.length > 0) { %>
+        <% for (const game of userCricketGames) { %>
+          <li>Stats or Score: <%= game.stats_or_score %>, Win: <%= game.win ? 'Yes' : 'No' %></li>
+        <% } %>
+      <% } else { %>
+        <li>No games to display.</li>
+      <% } %>
+    </ul>
+
+    <h2>Top 5 Cricket Players</h2>
+    <ul>
+      <% if (topCricketPlayers && topCricketPlayers.length > 0) { %>
+        <% for (const player of topCricketPlayers) { %>
+          <li>User: <%= player.name %>, Stats or Score: <%= player.average %></li>
+        <% } %>
+      <% } else { %>
+        <li>No top players to display.</li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <h1>Welcome to the Darts_App</h1>
+    <a href="/signup">Sign up now!</a>
+  <% } %>
 </body>
 </html>
