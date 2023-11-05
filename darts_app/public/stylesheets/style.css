@@ -6,3 +6,11 @@ body {
 a {
   color: #00B7FF;
 }
+
+.centered-content {
+  text-align: center; /* テキストを中央揃えにする */
+}
+
+.button {
+  margin: 10px; /* ボタンの上下の間隔を調整 */
+}
