@@ -3,8 +3,25 @@
 <head>
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <style>
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #0074D9; /* ボタンの背景色を指定 */
+      color: #fff; /* テキストの色を指定 */
+      text-decoration: none;
+      border-radius: 5px; /* 角丸にする */
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background-color: #0056A0; /* マウスオーバー時の背景色を指定 */
+    }
+  </style>
 </head>
 <body>
+
+
 <% if(isAuth) { %>
   <a href="/zeroone">zeroone!</a>
   <br>
@@ -20,10 +37,12 @@
   <h2>Average Cricket Score: <%= averageCricketStats %></h2>
 
 <% } else { %>
-  <h1>Welcome to the Darts_App</h1>
-  <a href="/signup">Sign up now!</a>
-  <br>
-  <a href="/signin">Sign in now!</a>
+  <div class="centered-content">
+    <h1>Welcome to the Darts_App</h1>
+    <a href="/signup" class="button">Sign up</a>
+    <br>
+    <a href="/signin" class="button">Log in</a>
+  </div>
 <% } %>
 </body>
 </html>
