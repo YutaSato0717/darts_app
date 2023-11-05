@@ -5,7 +5,7 @@
   <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
-<% if(isAuth) { %>
+<% if (isAuth) { %>
   <p>count up</p>
   <a href="/">home!</a>
   <br>
@@ -14,6 +14,38 @@
   <a href="/cricket">cricket!</a>
   <br>
   <a href="/logout">logout!</a>
+  <!-- 新しいゲームを追加するフォーム -->
+  <form action="/countup" method="post">
+    <label for="stats_or_score">Stats or Score:</label>
+    <input type="number" name="stats_or_score" required>
+    <label for="win">Win (1 for win, 0 for loss):</label>
+    <input type="number" name="win" required>
+    <button type="submit">Add Game</button>
+  </form>
+  <!-- ユーザーの最新の10ゲームを表示 -->
+  <h2>Your Last 10 Countup Games</h2>
+  <ul>
+    <% if (userCountupGames && userCountupGames.length > 0) { %>
+      <% for (const game of userCountupGames) { %>
+        <li>Stats or Score: <%= game.stats_or_score %>, Win: <%= game.win ? 'Yes' : 'No' %></li>
+      <% } %>
+    <% } else { %>
+      <li>No games to display.</li>
+    <% } %>
+  </ul>
+
+  <!-- ユーザーの最新の10ゲームを表示の後に、上位5人の情報を表示 -->
+<h2>Top 5 Countup Players</h2>
+<ul>
+  <% if (topCountupPlayers && topCountupPlayers.length > 0) { %>
+    <% for (const player of topCountupPlayers) { %>
+      <li>User: <%= player.name %>, Stats or Score: <%= player.stats_or_score %></li>
+    <% } %>
+  <% } else { %>
+    <li>No top players to display.</li>
+  <% } %>
+</ul>
+
 <% } else { %>
   <h1>Welcome to the Darts_App</h1>
   <a href="/signup">Sign up now!</a>
