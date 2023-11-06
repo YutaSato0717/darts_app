@@ -14,6 +14,37 @@
   <a href="/cricket">cricket!</a>
   <br>
   <a href="/logout">logout!</a>
+  <form action="/cricket" method="POST">
+    <label for="stats_or_score">Stats or Score:</label>
+    <input type="number" name="stats_or_score" required>
+    <br>
+    <label for="win">Win (1 for win, 0 for loss):</label>
+    <input type="number" name="win" required>
+    <br>
+    <button type="submit">Add Data</button>
+  </form>
+
+  <h2>Your Last 10 01 Games</h2>
+  <ul>
+    <% if (user01Games && user01Games.length > 0) { %>
+      <% for (const game of user01Games) { %>
+        <li>Stats or Score: <%= game.stats_or_score %>, Win: <%= game.win ? 'Yes' : 'No' %></li>
+      <% } %>
+    <% } else { %>
+      <li>No games to display.</li>
+    <% } %>
+  </ul>
+
+  <h2>Top 5 Cricket Players</h2>
+  <ul>
+    <% if (top01Players && top01Players.length > 0) { %>
+      <% for (const player of top01Players) { %>
+        <li>User: <%= player.name %>, Stats or Score: <%= player.average %></li>
+      <% } %>
+    <% } else { %>
+      <li>No top players to display.</li>
+    <% } %>
+  </ul>
 <% } else { %>
   <h1>Welcome to the Darts_App</h1>
   <a href="/signup">Sign up now!</a>
