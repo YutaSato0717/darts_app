@@ -23,6 +23,7 @@
 
 
 <% if(isAuth) { %>
+  <div class="centered-content">
   <a href="/zeroone">zeroone!</a>
   <br>
   <a href="/countup">countup!</a>
@@ -35,6 +36,7 @@
   <h2>Average Countup Score: <%= averageCountupScore %></h2>
   <h2>Average 01 Score: <%= average01Stats %></h2>
   <h2>Average Cricket Score: <%= averageCricketStats %></h2>
+</div>
 
 <% } else { %>
   <div class="centered-content">
