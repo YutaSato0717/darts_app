@@ -30,29 +30,29 @@ router.get('/', async function (req, res, next) {
       .where({ user_id: userId, type: 'cricket' })
       .avg('stats_or_score as avg_score')
       .first();
-
+    
     const winCount01 = await knex('games')
       .where({ user_id: userId, type: '01', win: 1 })
       .count('id as win_count')
       .first();
-
+    
     const gameCount01 = await knex('games')
       .where({ user_id: userId, type: '01' })
       .count('id as game_count')
       .first();
-
+    
     const win_rate_01 = winCount01.win_count / gameCount01.game_count;
-
+    
     const winCountCricket = await knex('games')
       .where({ user_id: userId, type: 'cricket', win: 1 })
       .count('id as win_count')
       .first();
-
+    
     const gameCountCricket = await knex('games')
       .where({ user_id: userId, type: 'cricket' })
       .count('id as game_count')
       .first();
-
+    
     const win_rate_cricket = winCountCricket.win_count / gameCountCricket.game_count;
 
 
