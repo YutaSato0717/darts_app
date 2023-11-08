@@ -145,7 +145,7 @@ span {
     <ul>
       <% if (topCricketPlayers && topCricketPlayers.length > 0) { %>
         <% for (const player of topCricketPlayers) { %>
-          <li>User: <%= player.user_id %>, Stats or Score: <%= player.average %></li>
+          <li>User: <%= player.name %>, Stats or Score: <%= player.average %></li>
         <% } %>
       <% } else { %>
         <li>No top players to display.</li>

@@ -17,11 +17,14 @@ router.get('/', async function (req, res, next) {
 
       // 全ユーザーのgamesテーブルからstats_or_scoreの平均の上位5人のデータを取得
       const top5Players = await knex('games')
-        .select('user_id', knex.raw('AVG(stats_or_score) as average'))
-        .where({ type: 'cricket' })
-        .groupBy('user_id')
+        .innerJoin('users', 'users.id', '=', 'games.user_id')
+        .select(['users.name', knex.raw('AVG(stats_or_score) as average')])
+        .where({ type: 'cricket' }) // '01' ではなく `01` を使用
+        .groupBy('users.name')
         .orderBy('average', 'desc')
-        .limit(5);
+        .limit(5);;
+
+      console.log(top5Players);
 
       // データをejsテンプレートに渡してrender
       res.render('cricket', {
