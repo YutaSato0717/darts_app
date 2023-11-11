@@ -42,31 +42,19 @@ router.get('/', async function (req, res, next) {
 router.post('/', async function (req, res, next) {
   const userId = req.session.userid;
 
-  if (userId) {
-    // データを追加するクエリを実行
-    const { stats_or_score, win } = req.body; // リクエストからデータを取得
-    const gameData = {
-      type: 'cricket',
-      stats_or_score,
-      win,
-      user_id: userId,
-    };
-
-    // データを追加する前に、stats_or_scoreの値が正しいことを検証する
-    if (isNaN(stats_or_score)) {
-      res.status(400).json({ error: 'Stats or score must be a number.' });
-      return;
-    }
-
-    try {
-      await knex('games').insert(gameData);
-      res.status(200).json({ message: 'Data added successfully.' });
-    } catch (error) {
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  } else {
-    res.status(401).json({ error: 'Unauthorized' });
-  }
+   // ログインしているユーザーのgamesテーブルにデータを追加
+   const { stats_or_score, win } = req.body; // ここで適切なリクエストボディのデータを取得する必要があります
+   const gameData = {
+     type: 'cricket',
+     user_id: userId,
+     stats_or_score,
+     win,
+   };
+   console.log(gameData)
+ 
+   const insertedGame = await knex('games').insert(gameData);
+ 
+   res.redirect('/cricket');
 });
 
 module.exports = router;
