@@ -107,7 +107,9 @@ span {
   </style>
 </head>
 <body>
-  
+
+<%- include('./error_messages'); %>
+
 <% if(isAuth) { %>
   <h1>01</h1>
   <nav>
@@ -140,7 +142,7 @@ span {
     <% } %>
   </ul>
 
-  <h2>Top 5 Cricket Players</h2>
+  <h2>Top 5 01 Players</h2>
   <ul>
     <% if (top01Players && top01Players.length > 0) { %>
       <% for (const player of top01Players) { %>
