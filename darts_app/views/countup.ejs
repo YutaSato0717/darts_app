@@ -107,8 +107,9 @@ span {
   </style>
 </head>
 <body>
-  <h1>Count Up</h1>
+  
 <% if (isAuth) { %>
+  <h1>Count Up</h1>
   <nav>
     <a href="/">Home</a>
     <a href="/zeroone">01</a>
@@ -133,7 +134,7 @@ span {
         <li>Stats or Score: <%= game.stats_or_score %>, Win: <%= game.win ? 'Yes' : 'No' %></li>
       <% } %>
     <% } else { %>
-      <li>No games to display.</li>
+      <h5>No games to display.</h5>
     <% } %>
   </ul>
 
@@ -145,7 +146,7 @@ span {
       <li>User: <%= player.name %>, Stats or Score: <%= player.stats_or_score %></li>
     <% } %>
   <% } else { %>
-    <li>No top players to display.</li>
+    <h5>No top players to display.</h5>
   <% } %>
 </ul>
 
