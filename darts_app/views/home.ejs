@@ -168,7 +168,42 @@ span {
     <br>
     <h2 class="average-countup-score">COUNTUP  </h2><h1><%= averageCountupScore %></h1><h1> (MAX <%= highestCountupScore %>)</h1>
     <br> 
-    
+
+    <h2 class="highest-countup-score">(High Score) </h2><h1><%= highestCountupScore %></h1>
+      <h2>Win rate 01: <%= win01 %></h2>
+  <h2>Win rate cricket:<%= winCricket %></h2>
+
+  <ul>
+    <% if (user01Games && user01Games.length > 0) { %>
+      <% for (const game of user01Games) { %>
+        <li>Stats or Score: <%= game.stats_or_score %></li>
+      <% } %>
+    <% } else { %>
+      <li>No games to display.</li>
+    <% } %>
+  </ul>
+
+  <ul>
+    <% if (userCricketGames && userCricketGames.length > 0) { %>
+      <% for (const game of userCricketGames) { %>
+        <li>Stats or Score: <%= game.stats_or_score %></li>
+      <% } %>
+    <% } else { %>
+      <li>No games to display.</li>
+    <% } %>
+  </ul>
+
+  <ul>
+    <% if (userCountupGames && userCountupGames.length > 0) { %>
+      <% for (const game of userCountupGames) { %>
+        <li>Stats or Score: <%= game.stats_or_score %></li>
+      <% } %>
+    <% } else { %>
+      <li>No games to display.</li>
+    <% } %>
+  </ul>
+
+
   </div>
 
 
