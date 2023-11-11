@@ -55,6 +55,24 @@ router.get('/', async function (req, res, next) {
     
     const win_rate_cricket = winCountCricket.win_count / gameCountCricket.game_count;
 
+    const game_01_Data = await knex('games')
+        .select('stats_or_score', 'win')
+        .where({ type: '01', user_id: userId })
+        .orderBy('id', 'desc')
+        .limit(10);
+
+    const game_Count_Data = await knex('games')
+        .select('stats_or_score', 'win')
+        .where({ type: 'countup', user_id: userId })
+        .orderBy('id', 'desc')
+        .limit(10);
+      
+    const game_Cricket_Data = await knex('games')
+        .select('stats_or_score', 'win')
+        .where({ type: 'cricket', user_id: userId })
+        .orderBy('id', 'desc')
+        .limit(10);
+
 
     console.log('highestCountupScore:', highestCountupScore);
     console.log('averageCountupScore:', averageCountupScore);
@@ -62,6 +80,9 @@ router.get('/', async function (req, res, next) {
     console.log('averageCricketStats', averageCricketStats);
     console.log('win_rate_01', win_rate_01);
     console.log('win_rate_cricket', win_rate_cricket);
+    console.log('01_data', game_01_Data);
+    console.log('cricket_data', game_Cricket_Data);
+    console.log('countup_data', game_Count_Data);
 
 
     // 結果をレンダリング
@@ -74,6 +95,9 @@ router.get('/', async function (req, res, next) {
       averageCricketStats: averageCricketStats.avg_score || 0,
       win01: win_rate_01 || 0,
       winCricket: win_rate_cricket || 0,
+      user01Games : game_01_Data || 0,
+      userCricketGames : game_Cricket_Data || 0,
+      userCountupGames : game_Count_Data || 0,
     });
   } catch (err) {
     console.error(err);
