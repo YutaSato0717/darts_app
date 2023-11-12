@@ -132,7 +132,7 @@ span {
   }
 
   .cricket-stats {
-    color: #0000ff; /* Cricket Statsの色（例: 緑色） */
+    color: #2d2dda; /* Cricket Statsの色（例: 緑色） */
   }
 
   .highest-countup-score {
@@ -151,7 +151,7 @@ span {
 <body>
 <%- include('./error_messages'); %>
 <% if(isAuth) { %>
-  <h1>Home</h1>
+  
   <nav>
     <a href="/">Home</a>
     <a href="/zeroone">01</a>
@@ -161,6 +161,8 @@ span {
     <div class="animation start-home"></div>
     </nav>
 <br>
+
+<h1>Home</h1>
 
   <div class="centered-content">
     <h2 class="zeroone-stats"> 01  </h2><h1><%= average01Stats %></h1><h1> (WIN <%= win01*100 %>%)</h1>
