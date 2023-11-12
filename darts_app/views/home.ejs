@@ -94,6 +94,7 @@ body {
   font-size: 12px;
   font-family: sans-serif;
   background-color: #191919;
+  color: #ecf0f1;
 }
 h1 {
   text-align: center;
@@ -131,7 +132,7 @@ span {
   }
 
   .cricket-stats {
-    color: #0000ff; /* Cricket Statsの色（例: 緑色） */
+    color: #2d2dda; /* Cricket Statsの色（例: 緑色） */
   }
 
   .highest-countup-score {
@@ -150,7 +151,7 @@ span {
 <body>
 <%- include('./error_messages'); %>
 <% if(isAuth) { %>
-  <h1>Home</h1>
+  
   <nav>
     <a href="/">Home</a>
     <a href="/zeroone">01</a>
@@ -161,6 +162,8 @@ span {
     </nav>
 <br>
 
+<h1>Home</h1>
+
   <div class="centered-content">
     <h2 class="zeroone-stats"> 01  </h2><h1><%= average01Stats %></h1><h1> (WIN <%= win01*100 %>%)</h1>
     <br>
@@ -168,10 +171,6 @@ span {
     <br>
     <h2 class="average-countup-score">COUNTUP  </h2><h1><%= averageCountupScore %></h1><h1> (MAX <%= highestCountupScore %>)</h1>
     <br> 
-
-    <h2 class="highest-countup-score">(High Score) </h2><h1><%= highestCountupScore %></h1>
-      <h2>Win rate 01: <%= win01 %></h2>
-  <h2>Win rate cricket:<%= winCricket %></h2>
 
   <ul>
     <% if (user01Games && user01Games.length > 0) { %>
