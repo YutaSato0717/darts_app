@@ -162,20 +162,20 @@ span {
     </nav>
 <br>
 
-<h1>Home</h1>
+<h1>Your Data[]</h1>
 
   <div class="centered-content">
-    <h2 class="zeroone-stats"> 01  </h2><h1><%= average01Stats %></h1><h1> (WIN <%= win01*100 %>%)</h1>
+    <h2 class="zeroone-stats"> 01  </h2><h1><%= average01Stats.toFixed(2) %></h1><h1> (WIN <%= (win01*100).toFixed(1) %>%)</h1>
     <br>
-    <h2 class="cricket-stats"> CRICKET </h2> <h1><%= averageCricketStats %></h1><h1> (WIN <%= winCricket*100 %>%)</h1>
+    <h2 class="cricket-stats"> CRICKET </h2> <h1><%= averageCricketStats.toFixed(2) %></h1><h1> (WIN <%= (winCricket*100).toFixed(1) %>%)</h1>
     <br>
-    <h2 class="average-countup-score">COUNTUP  </h2><h1><%= averageCountupScore %></h1><h1> (MAX <%= highestCountupScore %>)</h1>
+    <h2 class="average-countup-score">COUNTUP  </h2><h1><%= averageCountupScore.toFixed(2) %></h1><h1> (MAX <%= highestCountupScore %>)</h1>
     <br> 
 
   <ul>
     <% if (user01Games && user01Games.length > 0) { %>
       <% for (const game of user01Games) { %>
-        <li>Stats or Score: <%= game.stats_or_score %></li>
+        <li>Stats or Score: <%= game.stats_or_score.toFixed(2) %></li>
       <% } %>
     <% } else { %>
       <li>No games to display.</li>
@@ -185,7 +185,7 @@ span {
   <ul>
     <% if (userCricketGames && userCricketGames.length > 0) { %>
       <% for (const game of userCricketGames) { %>
-        <li>Stats or Score: <%= game.stats_or_score %></li>
+        <li>Stats or Score: <%= game.stats_or_score.toFixed(2) %></li>
       <% } %>
     <% } else { %>
       <li>No games to display.</li>
@@ -195,7 +195,7 @@ span {
   <ul>
     <% if (userCountupGames && userCountupGames.length > 0) { %>
       <% for (const game of userCountupGames) { %>
-        <li>Stats or Score: <%= game.stats_or_score %></li>
+        <li>Stats or Score: <%= game.stats_or_score.toFixed(2) %></li>
       <% } %>
     <% } else { %>
       <li>No games to display.</li>
