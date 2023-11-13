@@ -200,7 +200,7 @@ textarea {
     <ul>
       <% if (topCricketPlayers && topCricketPlayers.length > 0) { %>
         <% for (let i = 0; i < topCricketPlayers.length; i++) { %>
-          <h2><%= i + 1 %>位 : <%= topCricketPlayers[i].name %> <br> [Stats] : <%= topCricketPlayers[i].average %></h2>
+          <h2><%= i + 1 %>位 : <%= topCricketPlayers[i].name %> <br> [Stats] : <%= topCricketPlayers[i].average.toFixed(2) %></h2>
         <% } %>
       <% } else { %>
         <h2>No top players to display.</h2>
