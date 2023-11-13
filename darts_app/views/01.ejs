@@ -89,7 +89,7 @@ h1 {
   font-size: 50px;
   color: #ff0000;
   text-shadow: 2px 2px 4px #000000;
-  font-family: 'Cherry Swash', cursive;
+  
 }
 
 p {
@@ -173,8 +173,8 @@ textarea {
   <nav>
     <a href="/">Home</a>
     <a href="/zeroone">01</a>
-    <a href="/countup">Count Up</a>
     <a href="/cricket">Cricket</a>
+    <a href="/countup">Count Up</a>
     <a href="/logout">Logout</a>
     <div class="animation start-home"></div>
     </nav>
@@ -193,19 +193,21 @@ textarea {
       <input type="checkbox" name="win" value="0">
     </div>
     <br>
+    <br>
     <button type="submit">Add Data</button>
   </form>
   <br>
 
-  <h2>01 RANKING</h2>
+  <h1>01 RANKING</h1>
   <ul>
     <% if (top01Players && top01Players.length > 0) { %>
-      <% for (const player of top01Players) { %>
-        <li>User: <%= player.name %>, Stats or Score: <%= player.average %></li>
+      <% for (let i = 0; i < top01Players.length; i++) { %>
+        <h2><%= i + 1 %> 位: <%= top01Players[i].name %>    Stats : <%= top01Players[i].average %></h2>
       <% } %>
     <% } else { %>
       <li>No top players to display.</li>
     <% } %>
+    
   </ul>
 <% } else { %>
   <h1>Welcome to the Darts_App</h1>
