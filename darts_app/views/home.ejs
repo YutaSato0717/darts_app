@@ -2,6 +2,7 @@
 <html>
 <head>
   <title><%= title %></title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
   <link rel='stylesheet' href='/stylesheets/style.css'/>
   <style>
     .button {
@@ -146,6 +147,9 @@ span {
   .centered-content h1 {
     display: inline;
   }
+  #line-chart-01 {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -165,11 +169,12 @@ span {
 <h1>Your Data[]</h1>
 
   <div class="centered-content">
-    <h2 class="zeroone-stats"> 01  </h2><h1><%= average01Stats.toFixed(2) %></h1><h1> (WIN <%= (win01*100).toFixed(1) %>%)</h1>
+    <h2 class="zeroone-stats"> 01 Avg </h2><h1><%= average01Stats.toFixed(2) %></h1><h1> (WIN <%= (win01*100).toFixed(1) %>%)</h1>
     <br>
-    <h2 class="cricket-stats"> CRICKET </h2> <h1><%= averageCricketStats.toFixed(2) %></h1><h1> (WIN <%= (winCricket*100).toFixed(1) %>%)</h1>
+    <div id="line-chart-01"></div>
+    <h2 class="cricket-stats"> CRICKET Avg</h2> <h1><%= averageCricketStats.toFixed(2) %></h1><h1> (WIN <%= (winCricket*100).toFixed(1) %>%)</h1>
     <br>
-    <h2 class="average-countup-score">COUNTUP  </h2><h1><%= averageCountupScore.toFixed(2) %></h1><h1> (MAX <%= highestCountupScore %>)</h1>
+    <h2 class="average-countup-score">COUNTUP Avg</h2><h1><%= averageCountupScore.toFixed(2) %></h1><h1> (MAX <%= highestCountupScore %>)</h1>
     <br> 
 
   <ul>
@@ -181,7 +186,7 @@ span {
       <li>No games to display.</li>
     <% } %>
   </ul>
-
+   
   <ul>
     <% if (userCricketGames && userCricketGames.length > 0) { %>
       <% for (const game of userCricketGames) { %>
@@ -191,7 +196,7 @@ span {
       <li>No games to display.</li>
     <% } %>
   </ul>
-
+  
   <ul>
     <% if (userCountupGames && userCountupGames.length > 0) { %>
       <% for (const game of userCountupGames) { %>
@@ -201,7 +206,6 @@ span {
       <li>No games to display.</li>
     <% } %>
   </ul>
-
 
   </div>
 
@@ -215,5 +219,7 @@ span {
     <a href="/signin" class="button">Sign in</a>
   </div>
 <% } %>
+
+
 </body>
 </html>
