@@ -10,7 +10,7 @@
   position: relative;
   width: 590px;
   height: 50px;
-  background-color: #b6babd;
+  background-color: #565758;
   border-radius: 8px;
   font-size: 0;
 }
@@ -58,17 +58,17 @@ nav .start-home, a:nth-child(1):hover~.animation {
 nav .start-about, a:nth-child(2):hover~.animation {
   width: 100px;
   left: 100px;
-  background-color: #1abc9c;
+  background-color: #c54444;
 }
 nav .start-blog, a:nth-child(3):hover~.animation {
   width: 120px;
   left: 200px;
-  background-color: #1abc9c;
+  background-color: #5858c2;
 }
 nav .start-portefolio, a:nth-child(4):hover~.animation {
   width: 120px;
   left: 330px;
-  background-color: #1abc9c;
+  background-color: #71cb71;
 }
 nav .start-contact, a:nth-child(5):hover~.animation {
   width: 120px;
@@ -79,16 +79,17 @@ nav .start-contact, a:nth-child(5):hover~.animation {
 body {
   font-size: 12px;
   font-family: sans-serif;
-  
+  background-color: #191919;
+  color: #ffffff;
 }
 h1 {
   text-align: center;
   margin: 40px 0 40px;
   text-align: center;
   font-size: 50px;
-  color: #1abc9c;
+  color: #5858c2;
   text-shadow: 2px 2px 4px #000000;
-  font-family: 'Cherry Swash', cursive;
+ 
 }
 
 p {
@@ -104,6 +105,61 @@ p {
 span {
     color: #2BD6B4;
 }
+
+body { background:rgb(30,30,40); }
+form { max-width:420px; margin:50px auto; }
+
+.feedback-input {
+  color:white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border:2px solid #5858c2;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.feedback-input:focus { border:2px solid #5858c2; }
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+[type="submit"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background:#5858c2;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+[type="submit"]:hover { background:#5858c2; }
+
+.checkbox-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .checkbox-group label {
+    margin-right: 10px;
+  }
   </style>
 </head>
 <body>
@@ -111,48 +167,46 @@ span {
   <%- include('./error_messages'); %>
 
   <% if(isAuth) { %>
-    <h1>Cricket</h1>
+    
     <nav>
       <a href="/">Home</a>
       <a href="/zeroone">01</a>
-      <a href="/countup">Count Up</a>
-      <a href="/cricket">Cricket</a>
-      <a href="/logout">Logout</a>
+      <a href="/cricket">CRICKET</a>
+      <a href="/countup">COUNT UP</a>
+      <a href="/logout">Log out</a>
       <div class="animation start-home"></div>
       </nav>
-    <br>
-
+    
+    <h1>CRICKET</h1>
     <form action="/cricket" method="POST">
-      <label for="stats_or_score">Stats or Score:</label>
-      <input type="number" name="stats_or_score" required>
+      <label for="stats_or_score">Stats :</label>
+      <input type="text" name="stats_or_score" class="feedback-input" placeholder="2.35" pattern="\d+(\.\d{1,2})?" required>
       <br>
-      <label for="win">Win (1 for win, 0 for loss):</label>
-      <input type="number" name="win" required>
+      <label for="win">Win or Lose:</label>
+      <div class="checkbox-group">
+        <label for="win">Win:</label>
+        <input type="checkbox" name="win" value="1">
+      
+        <label for="lose">Lose:</label>
+        <input type="checkbox" name="win" value="0">
+      </div>
+      <br>
       <br>
       <button type="submit">Add Data</button>
     </form>
+<br>
 
-    <h2>Your Last 10 Cricket Games</h2>
-    <ul>
-      <% if (userCricketGames && userCricketGames.length > 0) { %>
-        <% for (const game of userCricketGames) { %>
-          <li>Stats or Score: <%= game.stats_or_score %>, Win: <%= game.win ? 'Yes' : 'No' %></li>
-        <% } %>
-      <% } else { %>
-        <li>No games to display.</li>
-      <% } %>
-    </ul>
-
-    <h2>Top 5 Cricket Players</h2>
+    <h1>CRICKET RANKING</h1>
     <ul>
       <% if (topCricketPlayers && topCricketPlayers.length > 0) { %>
-        <% for (const player of topCricketPlayers) { %>
-          <li>User: <%= player.name %>, Stats or Score: <%= player.average %></li>
+        <% for (let i = 0; i < topCricketPlayers.length; i++) { %>
+          <h2><%= i + 1 %>位 : <%= topCricketPlayers[i].name %> <br> [Stats] : <%= topCricketPlayers[i].average.toFixed(2) %></h2>
         <% } %>
       <% } else { %>
-        <li>No top players to display.</li>
+        <h2>No top players to display.</h2>
       <% } %>
     </ul>
+    
   <% } else { %>
     <h1>Welcome to the Darts_App</h1>
     <a href="/signup">Sign up now!</a>
