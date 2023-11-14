@@ -16,10 +16,13 @@ router.get('/', async function (req, res, next) {
 
     const topCountupPlayers = await knex('games')
       .join('users', 'games.user_id', 'users.id')
-      .select('users.name', 'games.stats_or_score')
+      .select('users.name')
+      .max('games.stats_or_score as max_stats_or_score')
       .where('games.type', 'countup')
-      .orderBy('games.stats_or_score', 'desc')
+      .groupBy('users.name')
+      .orderBy('max_stats_or_score', 'desc')
       .limit(5);
+    
     
     console.log(userCountupGames)
     console.log(topCountupPlayers)
