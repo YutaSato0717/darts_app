@@ -7,7 +7,7 @@ module.exports = {
     connection: {
       database: "darts_app",
       user: "root",
-      password: "takeru76E",
+      password: "Yuta0717",
     },
     pool: {
       min: 2,
