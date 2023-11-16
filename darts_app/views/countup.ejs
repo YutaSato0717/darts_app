@@ -177,7 +177,7 @@ textarea {
     <h1>COUNT UP</h1>
   <form action="/countup" method="post">
     <label for="stats_or_score">Stats :</label>
-    <input type="text" name="stats_or_score" class="feedback-input" placeholder="650" pattern="\d+(\.\d{1,2})?" required>
+    <input type="number" name="stats_or_score" class="feedback-input" placeholder="650" required step="1">
     <br>
     <label for="win">Win or Lose:</label>
     <div class="checkbox-group">
