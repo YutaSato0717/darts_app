@@ -151,15 +151,14 @@ textarea {
 }
 [type="submit"]:hover { background:#71cb71 }
 
-.checkbox-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .checkbox-group label {
-    margin-right: 10px;
-  }
+.radio-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .radio-group label {
+      margin-right: 5px;
+    }
   </style>
 </head>
 <body>
@@ -180,12 +179,11 @@ textarea {
     <input type="number" name="stats_or_score" class="feedback-input" placeholder="650" required step="1">
     <br>
     <label for="win">Win or Lose:</label>
-    <div class="checkbox-group">
-      <label for="win">Win:</label>
-      <input type="checkbox" name="win" value="1">
-    
-      <label for="lose">Lose:</label>
-      <input type="checkbox" name="win" value="0">
+    <div class="radio-group">
+      <label for="win">[Win]</label>
+      <input type="radio" name="win" value="1">
+      <label for="lose">[Lose]</label>
+      <input type="radio" name="win" value="0">
     </div>
     <br>
     <br>

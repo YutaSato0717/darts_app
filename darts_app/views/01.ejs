@@ -3,6 +3,7 @@
 <head>
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel="icon" href="/routes/favicon.ico">
   <style>
     nav {
   margin: 0px auto 0;
@@ -149,17 +150,16 @@ textarea {
   margin-top:-4px;
   font-weight:700;
 }
+
 [type="submit"]:hover { background:#CC4949; }
-
-.checkbox-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .checkbox-group label {
-    margin-right: 10px;
-  }
+    .radio-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .radio-group label {
+      margin-right: 5px;
+    }
   </style>
 
   
@@ -185,12 +185,11 @@ textarea {
     <input type="text" name="stats_or_score" class="feedback-input" placeholder="65.3" pattern="\d+(\.\d{1,2})?" required>
     <br>
     <label for="win">Win or Lose:</label>
-    <div class="checkbox-group">
-      <label for="win">Win:</label>
-      <input type="checkbox" name="win" value="1">
-    
-      <label for="lose">Lose:</label>
-      <input type="checkbox" name="win" value="0">
+    <div class="radio-group">
+      <label for="win">[Win]</label>
+      <input type="radio" name="win" value="1">
+      <label for="lose">[Lose]</label>
+      <input type="radio" name="win" value="0">
     </div>
     <br>
     <br>
