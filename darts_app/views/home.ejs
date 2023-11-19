@@ -13,17 +13,19 @@
   <style>
     
     .button {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #1abc9c; /* ボタンの背景色を指定 */
-      color: #fff; /* テキストの色を指定 */
-      text-decoration: none;
-      border-radius: 5px; /* 角丸にする */
-      font-weight: bold;
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #1abc9c;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        width: 150px; /* ここにボタンの幅を指定 */
+        text-align: center; /* ボタンのテキストを中央に配置 */
     }
 
     .button:hover {
-      background-color: #12a789; /* マウスオーバー時の背景色を指定 */
+        background-color: #12a789;
     }
 
     nav {
@@ -159,12 +161,62 @@ span {
       border: 1px #ccc solid;
       display: inline-block;
     }
+
+    
+    @keyframes rotateAndFade {
+            0% {
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        #rotating-image {
+            max-width: 100%;
+            max-height: 80%;
+            animation: rotateAndFade 1s linear 1s 1 normal forwards; /* 2秒かけて360度回転し、その後フェードアウト */
+        }
+
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+            z-index: 9999;
+        }
+
+        #splash-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        #splash-content {
+            text-align: center;
+        }
   </style>
 </head>
 <body>
 <%- include('./error_messages'); %>
+<div class="centered-content">
+  <div id="splash-screen">
+    <div id="splash-content">
+      <img id="rotating-image" src="https://media.discordapp.net/attachments/1175514115414970471/1175514281454882936/AizuDarts.png?ex=656b81fc&is=65590cfc&hm=bf8cade18bdbb1d71c1a0d324de3742f1f2c6683c077f83b7b4db3692b454140&=&width=986&height=986" alt="AizuDarts.png">
+      <!-- Add additional content or loading animation here -->
+    </div>
+  </div>
 <% if(isAuth) { %>
-  
+
   <nav>
     <a href="/">Home</a>
     <a href="/zeroone">01</a>
@@ -221,7 +273,9 @@ span {
 
 <% } else { %>
   <div class="centered-content">
-    <h1>Welcome to the Darts_App</h1>
+    
+    <h1>Let's record the darts !</h1>
+    <br>
     <br>
     <a href="/signup" class="button">Sign up</a>
     <br>
@@ -229,7 +283,28 @@ span {
   </div>
 <% } %>
 
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+        var splashScreen = document.getElementById('splash-screen');
+        var rotatingImage = document.getElementById('rotating-image');
 
+        splashScreen.style.opacity = '1';
+        
+        // 2秒かけて360度回転
+        rotatingImage.style.animationDuration = '1s';
+        
+        // 回転終了時にフェードアウト
+        rotatingImage.addEventListener('animationend', function () {
+            splashScreen.style.opacity = '0';
+
+            // スプラッシュスクリーンを非表示にする
+            setTimeout(function () {
+                splashScreen.style.display = 'none';
+            }, 500);
+        });
+    });
+</script>
+</script>
 </body>
 </html>
 
