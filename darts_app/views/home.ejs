@@ -157,11 +157,6 @@ span {
     display: inline;
   }
 
-  #line-chart {
-      border: 1px #ccc solid;
-      display: inline-block;
-    }
-
     
     @keyframes rotateAndFade {
             0% {
@@ -204,6 +199,38 @@ span {
         #splash-content {
             text-align: center;
         }
+
+
+  #line-chart {
+      border: 2px #ccc solid;
+      display: inline-block;
+    }
+    #line-chart2 {
+      border: 2px #ccc solid;
+      display: inline-block;
+    }
+
+    #line-chart3{
+      border: 2px #ccc solid;
+      display: inline-block;
+    }
+     
+       .line {
+         stroke: #ff5733; /* グラフの線の色を変更 */
+          }
+          .line2 {
+         stroke: #5858c2; /* グラフの線の色を変更 */
+          }
+          .line3 {
+         stroke: #71cb71; /* グラフの線の色を変更 */
+          }
+        .axis path,
+.axis line {
+ 
+  stroke: #fff; /* 軸の線の色を変更 */
+}
+
+
   </style>
 </head>
 <body>
@@ -228,48 +255,223 @@ span {
 <br>
 
 <h1>Your Data[<%= username.name %>]</h1>
+<br>
+<br>
 
   <div class="centered-content">
     <h2 class="zeroone-stats"> 01  </h2><h1><%= average01Stats.toFixed(2) %></h1><h1> (WIN <%= (win01*100).toFixed(1) %>%)</h1>
     <br>
-    <h2>直近10試合の記録</h2>
-    <ul>
-      <% if (user01Games && user01Games.length > 0) { %>
-        <% for (const game of user01Games) { %>
-          <li>Stats: <%= game.stats_or_score.toFixed(2) %></li>
-        <% } %>
-      <% } else { %>
-        <li>No games to display.</li>
+    <h2>Data from the last 10 games</h2>
+    <br>
+    <h3> <% if (user01Games && user01Games.length > 9) { %>
+      <% for (const game of user01Games.reverse()) { %>
+        <%= game.stats_or_score.toFixed(2) %>　 
       <% } %>
-    </ul>
+      <br>
+      <div id="line-chart"></div>
+      <br>
+      <h3>10回前　 9回前　 8回前　 7回前　　6回前　 5回前　　4回前　 3回前　　2回前　　1回前</h3>
+      <% } else { %>
+      <h3>It shows up after 10 matches.</h3>
+      <% } %> 
+    </h3>
+
+    <br>
     <br>
     <h2 class="cricket-stats"> CRICKET </h2> <h1><%= averageCricketStats.toFixed(2) %></h1><h1> (WIN <%= (winCricket*100).toFixed(1) %>%)</h1>
     <br>
-    <h2>直近10試合の記録</h2>
-    <ul>
-      <% if (userCricketGames && userCricketGames.length > 0) { %>
-        <% for (const game of userCricketGames) { %>
-          <li>Stats: <%= game.stats_or_score.toFixed(2) %></li>
-        <% } %>
-      <% } else { %>
-        <li>No games to display.</li>
+    <h2>Data from the last 10 games</h2>
+<br>
+    <h3><% if (userCricketGames && userCricketGames.length > 9) { %>
+      <% for (const game of userCricketGames.reverse()) { %>
+        <%= game.stats_or_score.toFixed(2) %> 　
       <% } %>
-    </ul>
+      <br>
+      <div id="line-chart2"></div>
+      <br>
+      <h3>10回前　9回前　 8回前　 7回前　　6回前　 5回前　　4回前　 3回前　　2回前　　1回前</h3>
+    <% } else { %>
+      <h3>It shows up after 10  matches.</h3>
+    <% } %>
+  </h3>
+
+    
+    <br>
     <br>
     <h2 class="average-countup-score">COUNTUP  </h2><h1><%= averageCountupScore.toFixed(2) %></h1><h1> (MAX <%= highestCountupScore %>)</h1>
     <br> 
-    <h2>直近10試合の記録</h2>
-    <ul>
-      <% if (userCountupGames && userCountupGames.length > 0) { %>
+    <h2>Data from the last 10 games</h2>
+    <h3>
+      <% if (userCountupGames && userCountupGames.length > 9) { %>
         <% for (const game of userCountupGames) { %>
-          <li> Score: <%= game.stats_or_score.toFixed(0) %></li>
+          <%= game.stats_or_score.toFixed(0) %>　　
         <% } %>
+        <br>
+      <div id="line-chart3"></div>
+        <br>
+        <h3>10回前　 9回前　 8回前　 7回前　　6回前　 5回前　　4回前　 3回前　　2回前　　1回前</h3>
       <% } else { %>
-        <li>No games to display.</li>
+        <h3>It shows up after 10  matches.</h3>
       <% } %>
-    </ul>
+    </h3>
   </div>
 
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+  var data = [
+    <% if (user01Games && user01Games.length > 0) { %>
+      <% for (let i = 0; i < user01Games.length; i++) { %>
+        <%= user01Games[i].stats_or_score.toFixed(2) %>,
+      <% } %>
+    <% } %>
+  ];
+
+  var width = 550;
+  var height = 200;
+
+  var svg = d3.select('#line-chart').append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .attr('class', 'chart-svg');
+
+  var xScale = d3.scaleLinear()
+    .domain([0, data.length - 1])
+    .range([0, width]);
+
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(data)])
+    .range([height, 0]);
+
+  var line = d3.line()
+    .x(function (d, i) { return xScale(i); })
+    .y(function (d) { return yScale(d); });
+
+  // グラフの描画
+  svg.append('path')
+    .data([data])
+    .attr('class', 'line')
+    .attr('d', line)
+    .style("stroke-width", 3);
+
+  // Y軸を追加
+  svg.append('g')
+    .call(d3.axisLeft(yScale));
+
+  // Y軸にラベルを追加
+  svg.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 0 - margin.left)
+    .attr("x", 0 - height / 2)
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .text("Your Y-axis Label Here"); // ラベルを追加するテキストを指定
+});
+
+  </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var data2 = [
+    <% if (userCricketGames && userCricketGames.length > 0) { %>
+      <% for (let i = 0; i < userCricketGames.length; i++) { %>
+        <%= userCricketGames[i].stats_or_score.toFixed(2) %>,
+      <% } %>
+    <% } %>
+    ];
+
+    var width = 550;
+    var height = 200;
+
+    var svg2 = d3.select('#line-chart2').append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('class', 'chart-svg');
+
+    var xScale2 = d3.scaleLinear()
+      .domain([0, data2.length - 1])
+      .range([0, width]);
+
+    var yScale2 = d3.scaleLinear()
+      .domain([0, d3.max(data2)])
+      .range([height, 0]);
+
+    var line2 = d3.line()
+      .x(function (d, i) { return xScale2(i); })
+      .y(function (d) { return yScale2(d); });
+
+    // グラフの描画
+    svg2.append('path')
+      .data([data2])
+      .attr('class', 'line2')
+      .attr('d', line2)
+      .style("stroke-width", 3);
+
+    // Y軸を追加
+    svg2.append('g')
+      .call(d3.axisLeft(yScale2));
+
+    // Y軸にラベルを追加
+    svg2.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x", 0 - height / 2)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Your Y-axis Label Here");
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var data3 = [
+    <% if (userCountupGames && userCountupGames.length > 0) { %>
+      <% for (let i = 0; i < userCountupGames.length; i++) { %>
+        <%= userCountupGames[i].stats_or_score.toFixed(2) %>,
+      <% } %>
+    <% } %>
+    ];
+
+    var width = 550;
+    var height = 200;
+
+    var svg3 = d3.select('#line-chart3').append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('class', 'chart-svg');
+
+    var xScale3 = d3.scaleLinear()
+      .domain([0, data3.length - 1])
+      .range([0, width]);
+
+    var yScale3 = d3.scaleLinear()
+      .domain([0, d3.max(data3)])
+      .range([height, 0]);
+
+    var line3 = d3.line()
+      .x(function (d, i) { return xScale3(i); })
+      .y(function (d) { return yScale3(d); });
+
+    // グラフの描画
+    svg3.append('path')
+      .data([data3])
+      .attr('class', 'line3')
+      .attr('d', line3)
+      .style("stroke-width", 3);
+
+    // Y軸を追加
+    svg3.append('g')
+      .call(d3.axisLeft(yScale3));
+
+    // Y軸にラベルを追加
+    svg3.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x", 0 - height / 2)
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Your Y-axis Label Here");
+  });
+</script>
 
 <% } else { %>
   <div class="centered-content">
@@ -303,7 +505,6 @@ span {
             }, 500);
         });
     });
-</script>
 </script>
 </body>
 </html>
