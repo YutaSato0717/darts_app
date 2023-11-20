@@ -103,6 +103,16 @@ p {
     font-size: 16px;
 }
 
+h3 {
+      text-align: left; /* リストを左揃えにする */
+      margin: 0 auto; /* 中央に配置 */
+      max-width: 450px; /* 必要に応じて適切な幅を指定 */
+    }
+
+    h3 li {
+      margin-left: 20px; /* リストアイテムのインデントを設定 */
+    }
+
 span {
     color: #2BD6B4;
 }
@@ -180,6 +190,13 @@ textarea {
     </nav>
 
     <h1>01</h1>
+    <h3>[ルール]
+      <a href="https://www.dartslive.com/jp/beginner/01/">詳しく知りたい人はこちら</a>
+      <br>
+      <li>01は301、501、701、901、1101、1501の全6種類</li>
+      <li>持ち点を先にピッタリ0にしたプレイヤーの勝ち</li>
+      <li>持ち点より高いスコアをヒットさせてしまうとBUSTとなる</li>
+    </h3>
   <form action="/zeroone" method="POST">
     <label for="stats_or_score">Stats :</label>
     <input type="text" name="stats_or_score" class="feedback-input" placeholder="ex.65.3" pattern="\d+(\.\d{1,2})?" required>
@@ -212,5 +229,7 @@ textarea {
   <h1>Welcome to the Darts_App</h1>
   <a href="/signup">Sign up now!</a>
 <% } %>
+
+
 </body>
 </html>

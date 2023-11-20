@@ -103,6 +103,17 @@ p {
     font-size: 16px;
 }
 
+
+h3 {
+      text-align: left; /* リストを左揃えにする */
+      margin: 0 auto; /* 中央に配置 */
+      max-width: 680px; /* 必要に応じて適切な幅を指定 */
+    }
+
+    h3 li {
+      margin-left: 20px; /* リストアイテムのインデントを設定 */
+    }
+
 span {
     color: #2BD6B4;
 }
@@ -178,6 +189,15 @@ textarea {
       </nav>
     
     <h1>CRICKET</h1>
+    <h3>[ルール]
+      <a href="https://www.dartslive.com/jp/beginner/cricket/">詳しく知りたい人はこちら</a>
+      <br>
+      <li>使うナンバーは15・16・17・18・19・20・ブル</li>
+      <li>ダーツを3回ヒットさせると自分の陣地になる（オープン）</li>
+      <li>オープンした自分のエリアにダーツがヒットすると得点となる</li>
+      <li>相手がオープンしたエリアに3回ヒットさせると無効にすることができる（クローズ）</li>
+      <li>得点が勝っている状態ですべてのエリアをクローズ or ラウンド終了時に得点の高いプレイヤーが勝ち</li>
+    </h3>
     <form action="/cricket" method="POST">
       <label for="stats_or_score">Stats :</label>
       <input type="text" name="stats_or_score" class="feedback-input" placeholder="ex.2.35" pattern="\d+(\.\d{1,2})?" required>
