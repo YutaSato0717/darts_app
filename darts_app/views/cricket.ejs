@@ -230,5 +230,21 @@ textarea {
     <h1>Welcome to the Darts_App</h1>
     <a href="/signup">Sign up now!</a>
   <% } %>
+  
+  <script>
+    // フォームが正常に送信されたときの処理
+    function handleFormSubmission() {
+      alert('Data added successfully!'); // アラートを表示
+    }
+  
+    // DOMが読み込まれたらイベントリスナーを設定
+    document.addEventListener('DOMContentLoaded', function() {
+      // フォーム要素を取得
+      var form = document.querySelector('form');
+  
+      // フォームが送信されたときの処理を設定
+      form.addEventListener('submit', handleFormSubmission);
+    });
+  </script>
 </body>
 </html>

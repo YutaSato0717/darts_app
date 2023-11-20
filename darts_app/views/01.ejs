@@ -54,7 +54,7 @@ a:nth-child(5) {
 nav .start-home, a:nth-child(1):hover~.animation {
   width: 100px;
   left: 100px;
-  background-color: #1abc9c;
+  background-color: #c54444;
 }
 nav .start-about, a:nth-child(2):hover~.animation {
   width: 100px;
@@ -229,7 +229,21 @@ textarea {
   <h1>Welcome to the Darts_App</h1>
   <a href="/signup">Sign up now!</a>
 <% } %>
+<script>
+  // フォームが正常に送信されたときの処理
+  function handleFormSubmission() {
+    alert('Data added successfully!'); // アラートを表示
+  }
 
+  // DOMが読み込まれたらイベントリスナーを設定
+  document.addEventListener('DOMContentLoaded', function() {
+    // フォーム要素を取得
+    var form = document.querySelector('form');
+
+    // フォームが送信されたときの処理を設定
+    form.addEventListener('submit', handleFormSubmission);
+  });
+</script>
 
 </body>
 </html>

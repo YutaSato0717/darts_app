@@ -298,8 +298,8 @@ span {
     <h2>Data from the last 10 games</h2>
     <h3>
       <% if (userCountupGames && userCountupGames.length > 9) { %>
-        <% for (const game of userCountupGames) { %>
-          <%= game.stats_or_score.toFixed(0) %>　　
+        <% for (const game of userCountupGames.reverse()) { %>
+          　<%= game.stats_or_score.toFixed(0) %>　
         <% } %>
         <br>
       <div id="line-chart3"></div>
