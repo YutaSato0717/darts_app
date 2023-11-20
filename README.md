@@ -11,7 +11,7 @@
 
 ### フロントエンド
 
-- React（フレームワーク）
+- HTML,CSS
 - javascript
 
 ### バックエンド
