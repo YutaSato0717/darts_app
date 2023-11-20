@@ -53,7 +53,7 @@ a:nth-child(5) {
 nav .start-home, a:nth-child(1):hover~.animation {
   width: 120px;
   left: 330px;
-  background-color: #1abc9c;
+  background-color: #71cb71;
 }
 nav .start-about, a:nth-child(2):hover~.animation {
   width: 100px;
@@ -101,6 +101,16 @@ p {
     font-family: 'Cherry Swash',cursive;
     font-size: 16px;
 }
+
+h3 {
+      text-align: left; /* リストを左揃えにする */
+      margin: 0 auto; /* 中央に配置 */
+      max-width: 450px; /* 必要に応じて適切な幅を指定 */
+    }
+
+    h3 li {
+      margin-left: 20px; /* リストアイテムのインデントを設定 */
+    }
 
 span {
     color: #71cb71;
@@ -174,6 +184,12 @@ textarea {
     </nav>
  
     <h1>COUNT UP</h1>
+    <h3>[ルール]
+      <a href="https://www.dartslive.com/jp/beginner/countup/">詳しく知りたい人はこちら</a>
+      <br>
+      <li>持ち点0からスタートして得点を多く獲得したプレイヤーが勝ち</li>
+      <li>1ラウンド3本投げ、計8ラウンドの合計得点を競う</li>
+    </h3>
   <form action="/countup" method="post">
     <label for="stats_or_score">Stats :</label>
     <input type="number" name="stats_or_score" class="feedback-input" placeholder="ex.650" required step="1">
@@ -209,5 +225,21 @@ textarea {
   <h1>Welcome to the Darts_App</h1>
   <a href="/signup">Sign up now!</a>
 <% } %>
+
+<script>
+  // フォームが正常に送信されたときの処理
+  function handleFormSubmission() {
+    alert('Data added successfully!'); // アラートを表示
+  }
+
+  // DOMが読み込まれたらイベントリスナーを設定
+  document.addEventListener('DOMContentLoaded', function() {
+    // フォーム要素を取得
+    var form = document.querySelector('form');
+
+    // フォームが送信されたときの処理を設定
+    form.addEventListener('submit', handleFormSubmission);
+  });
+</script>
 </body>
 </html>
