@@ -236,12 +236,7 @@ span {
 <body>
 <%- include('./error_messages'); %>
 <div class="centered-content">
-  <div id="splash-screen">
-    <div id="splash-content">
-      <img id="rotating-image" src="https://media.discordapp.net/attachments/1175514115414970471/1175514281454882936/AizuDarts.png?ex=656b81fc&is=65590cfc&hm=bf8cade18bdbb1d71c1a0d324de3742f1f2c6683c077f83b7b4db3692b454140&=&width=986&height=986" alt="AizuDarts.png">
-      <!-- Add additional content or loading animation here -->
-    </div>
-  </div>
+  
 <% if(isAuth) { %>
 
   <nav>
@@ -475,8 +470,14 @@ span {
 
 <% } else { %>
   <div class="centered-content">
-    
+    <div id="splash-screen">
+      <div id="splash-content">
+        <img id="rotating-image" src="https://media.discordapp.net/attachments/1175514115414970471/1175514281454882936/AizuDarts.png?ex=656b81fc&is=65590cfc&hm=bf8cade18bdbb1d71c1a0d324de3742f1f2c6683c077f83b7b4db3692b454140&=&width=986&height=986" alt="AizuDarts.png">
+        <!-- Add additional content or loading animation here -->
+      </div>
+    </div>
     <h1>Let's record the darts !</h1>
+    <br>
     <br>
     <br>
     <a href="/signup" class="button">Sign up</a>
