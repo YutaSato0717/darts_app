@@ -205,9 +205,9 @@ textarea {
       <label for="win">Win or Lose:</label>
       <div class="radio-group">
         <label for="win">[Win]</label>
-        <input type="radio" name="win" value="1">
+        <input type="radio" name="win" value="1" required>
         <label for="lose">[Lose]</label>
-        <input type="radio" name="win" value="0">
+        <input type="radio" name="win" value="0" required>
       </div>
       <br>
       <br>
@@ -230,7 +230,7 @@ textarea {
     <h1>Welcome to the Darts_App</h1>
     <a href="/signup">Sign up now!</a>
   <% } %>
-  
+
   <script>
     // フォームが正常に送信されたときの処理
     function handleFormSubmission() {
