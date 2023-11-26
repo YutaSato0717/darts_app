@@ -12,55 +12,48 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', async function (req, res, next) {
   const userId = req.session.userid;
   const isAuth = Boolean(userId);
   const username = req.body.username;
   const password = req.body.password;
   const repassword = req.body.repassword;
 
-  knex("users")
-    .where({name: username})
-    .select("*")
-    .then(async function (result) {
-      if (result.length !== 0) {
-        res.render("signup", {
-          title: "Sign up",
-          errorMessage: ["このユーザ名は既に使われています"],
-          isAuth: isAuth,
-        })
-      } else if (password === repassword) {
-        const hashedPassword = await bcrypt.hash(password, 10);
-        console.log(hashedPassword);
-        knex("users")
-          .insert({name: username, password: hashedPassword})
-          .then(function () {
-            res.redirect("/");
-          })
-          .catch(function (err) {
-            console.error(err);
-            res.render("signup", {
-              title: "Sign up",
-              errorMessage: [err.sqlMessage],
-              isAuth: isAuth,
-            });
-          });
-      } else {
-        res.render("signup", {
-          title: "Sign up",
-          errorMessage: ["パスワードが一致しません"],
-          isAuth: isAuth,
-        });
-      }
-    })
-    .catch(function (err) {
-      console.error(err);
-      res.render("signup", {
+  try {
+    const existingUser = await knex("users").where({ name: username }).select("*");
+
+    if (existingUser.length !== 0) {
+      return res.render("signup", {
         title: "Sign up",
-        errorMessage: [err.sqlMessage],
+        errorMessage: ["このユーザ名は既に使われています"],
         isAuth: isAuth,
       });
+    }
+
+    if (password === repassword) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const [newUserId] = await knex("users").insert({ name: username, password: hashedPassword });
+
+      req.session.userid = newUserId;
+
+      return res.redirect("/");
+    } else {
+      return res.render("signup", {
+        title: "Sign up",
+        errorMessage: ["パスワードが一致しません"],
+        isAuth: isAuth,
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.render("signup", {
+      title: "Sign up",
+      errorMessage: [err.sqlMessage],
+      isAuth: isAuth,
     });
+  }
 });
+
 
 module.exports = router;

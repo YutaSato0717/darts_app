@@ -3,6 +3,7 @@
 <head>
   <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <link rel="icon" href="/routes/favicon.ico">
   <style>
     nav {
   margin: 0px auto 0;
@@ -52,23 +53,23 @@ a:nth-child(5) {
 }
 nav .start-home, a:nth-child(1):hover~.animation {
   width: 100px;
-  left: 0;
-  background-color: #1abc9c;
+  left: 100px;
+  background-color: #c54444;
 }
 nav .start-about, a:nth-child(2):hover~.animation {
   width: 100px;
   left: 100px;
-  background-color: #1abc9c;
+  background-color: #c54444;
 }
 nav .start-blog, a:nth-child(3):hover~.animation {
   width: 120px;
   left: 200px;
-  background-color: #1abc9c;
+  background-color: #5858c2;
 }
 nav .start-portefolio, a:nth-child(4):hover~.animation {
   width: 120px;
   left: 330px;
-  background-color: #1abc9c;
+  background-color: #71cb71;
 }
 nav .start-contact, a:nth-child(5):hover~.animation {
   width: 120px;
@@ -87,9 +88,9 @@ h1 {
   margin: 40px 0 40px;
   text-align: center;
   font-size: 50px;
-  color: #ff0000;
-  text-shadow: 2px 2px 4px #000000;
-  font-family: 'Cherry Swash', cursive;
+  color: #c54444;
+  text-shadow: 2px 2px 4px #983636;
+  
 }
 
 p {
@@ -101,6 +102,16 @@ p {
     font-family: 'Cherry Swash',cursive;
     font-size: 16px;
 }
+
+h3 {
+      text-align: left; /* リストを左揃えにする */
+      margin: 0 auto; /* 中央に配置 */
+      max-width: 450px; /* 必要に応じて適切な幅を指定 */
+    }
+
+    h3 li {
+      margin-left: 20px; /* リストアイテムのインデントを設定 */
+    }
 
 span {
     color: #2BD6B4;
@@ -117,7 +128,7 @@ form { max-width:420px; margin:50px auto; }
   border-radius: 5px;
   line-height: 22px;
   background-color: transparent;
-  border:2px solid #CC6666;
+  border:2px solid #c54444;
   transition: all 0.3s;
   padding: 13px;
   margin-bottom: 15px;
@@ -126,7 +137,7 @@ form { max-width:420px; margin:50px auto; }
   outline:0;
 }
 
-.feedback-input:focus { border:2px solid #CC4949; }
+.feedback-input:focus { border:2px solid #c54444; }
 
 textarea {
   height: 150px;
@@ -137,7 +148,7 @@ textarea {
 [type="submit"] {
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
   width: 100%;
-  background:#CC6666;
+  background:#c54444;
   border-radius:5px;
   border:0;
   cursor:pointer;
@@ -149,17 +160,16 @@ textarea {
   margin-top:-4px;
   font-weight:700;
 }
+
 [type="submit"]:hover { background:#CC4949; }
-
-.checkbox-group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .checkbox-group label {
-    margin-right: 10px;
-  }
+    .radio-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .radio-group label {
+      margin-right: 5px;
+    }
   </style>
 
   
@@ -173,43 +183,67 @@ textarea {
   <nav>
     <a href="/">Home</a>
     <a href="/zeroone">01</a>
-    <a href="/countup">Count Up</a>
     <a href="/cricket">Cricket</a>
-    <a href="/logout">Logout</a>
+    <a href="/countup">Count Up</a>
+    <a href="/logout">Log out</a>
     <div class="animation start-home"></div>
     </nav>
 
     <h1>01</h1>
+    <h3>[ルール]
+      <a href="https://www.dartslive.com/jp/beginner/01/">詳しく知りたい人はこちら</a>
+      <br>
+      <li>01は301、501、701、901、1101、1501の全6種類</li>
+      <li>持ち点を先にピッタリ0にしたプレイヤーの勝ち</li>
+      <li>持ち点より高いスコアをヒットさせてしまうとBUSTとなる</li>
+    </h3>
   <form action="/zeroone" method="POST">
     <label for="stats_or_score">Stats :</label>
-    <input type="number" name="stats_or_score" class="feedback-input" placeholder="65.3" required>
+    <input type="text" name="stats_or_score" class="feedback-input" placeholder="ex.65.3" pattern="\d+(\.\d{1,2})?" required>
     <br>
     <label for="win">Win or Lose:</label>
-    <div class="checkbox-group">
-      <label for="win">Win:</label>
-      <input type="checkbox" name="win" value="1">
-    
-      <label for="lose">Lose:</label>
-      <input type="checkbox" name="win" value="0">
+    <div class="radio-group">
+      <label for="win">[Win]</label>
+      <input type="radio" name="win" value="1" required>
+      <label for="lose">[Lose]</label>
+      <input type="radio" name="win" value="0" required>
     </div>
+    <br>
     <br>
     <button type="submit">Add Data</button>
   </form>
   <br>
 
-  <h2>01 RANKING</h2>
+  <h1>01 RANKING</h1>
   <ul>
     <% if (top01Players && top01Players.length > 0) { %>
-      <% for (const player of top01Players) { %>
-        <li>User: <%= player.name %>, Stats or Score: <%= player.average %></li>
+      <% for (let i = 0; i < top01Players.length; i++) { %>
+        <h2><%= i + 1 %> 位: <%= top01Players[i].name %> <br>[Stats] <%= top01Players[i].average.toFixed(2) %></h2>
       <% } %>
     <% } else { %>
-      <li>No top players to display.</li>
+      <h2>No top players to display.</h2>
     <% } %>
+    
   </ul>
 <% } else { %>
   <h1>Welcome to the Darts_App</h1>
   <a href="/signup">Sign up now!</a>
 <% } %>
+<script>
+  // フォームが正常に送信されたときの処理
+  function handleFormSubmission() {
+    alert('Data added successfully!'); // アラートを表示
+  }
+
+  // DOMが読み込まれたらイベントリスナーを設定
+  document.addEventListener('DOMContentLoaded', function() {
+    // フォーム要素を取得
+    var form = document.querySelector('form');
+
+    // フォームが送信されたときの処理を設定
+    form.addEventListener('submit', handleFormSubmission);
+  });
+</script>
+
 </body>
 </html>

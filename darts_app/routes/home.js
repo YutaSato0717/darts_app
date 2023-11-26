@@ -7,6 +7,11 @@ router.get('/', async function (req, res, next) {
   const isAuth = Boolean(userId);
 
   try {
+    const username = await knex('users')
+      .select('name')
+      .where({ id: userId })
+      .first();
+
     // 最高の countup スコアを取得
     const highestCountupScore = await knex('games')
       .max('stats_or_score as highest_score')
@@ -73,7 +78,7 @@ router.get('/', async function (req, res, next) {
         .orderBy('id', 'desc')
         .limit(10);
 
-
+    console.log(username);
     console.log('highestCountupScore:', highestCountupScore);
     console.log('averageCountupScore:', averageCountupScore);
     console.log('average01Stats:', average01Stats);
@@ -89,6 +94,7 @@ router.get('/', async function (req, res, next) {
     res.render('home', {
       title: 'Darts App',
       isAuth: isAuth,
+      username: username,
       highestCountupScore: highestCountupScore.highest_score,
       averageCountupScore: averageCountupScore.avg_score || 0,
       average01Stats: average01Stats.avg_score || 0,
