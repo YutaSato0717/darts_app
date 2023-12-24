@@ -16,8 +16,7 @@
 
 ### バックエンド
 
-- Node.js
-- javascript
+- Node.js（express)
 - MySQL
 
 ## 機能
