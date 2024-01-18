@@ -17,7 +17,6 @@
 ### バックエンド
 
 - Node.js（express)
-- MySQL
 
 ## 機能
 
@@ -26,7 +25,9 @@
 - プレイヤーデータ表示（平均スタッツやスコア、直近10試合のデータをグラフで表示）
 - ランキング表示（レーティングやスタッツ順にプレイヤー名を表示）
 
-## データベース
+## データベース(MySQL)
+<img width="568" alt="darts_database" src="https://github.com/YutaSato0717/darts_app/assets/109122250/70a7b7a2-6fd4-4166-95d5-99c970688d1f">
+
 
 
 
