@@ -26,9 +26,9 @@
 - ランキング表示（レーティングやスタッツ順にプレイヤー名を表示）
 
 ## データベース(MySQL)
-<試合データの保存テーブル>
+###　<試合データの保存テーブル>
 <img width="568" alt="darts_database" src="https://github.com/YutaSato0717/darts_app/assets/109122250/70a7b7a2-6fd4-4166-95d5-99c970688d1f">
-<ユーザー情報テーブル>
+### <ユーザー情報テーブル>
 <img width="438" alt="スクリーンショット 2024-01-16 16 34 21" src="https://github.com/YutaSato0717/darts_app/assets/109122250/b42f04a9-0736-4aae-a544-d3012be1cd89">
 
 
